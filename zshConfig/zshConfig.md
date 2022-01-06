@@ -42,3 +42,16 @@ alias git="LANG=en_US.UTF-8 git"     // git 명렁 alias 추가
 ```
 source ~/.zshrc
 ```
+
+<br>
+
+## window terminal(zsh 사용)에서 git log 인코딩 문제로 한글이 깨져서 나옴
+
+![](https://user-images.githubusercontent.com/23889744/148407233-8a533859-b6bb-4949-8417-5ae68d3dc7ff.png)
+
+git 명령결과를 영어로 나오게 하는 설정을 적용할때 .zshrc에 LANG 값을 en_US로 고쳤는데 이렇게 하지않고 alias를 사용하는 방식으로 했더니 해결됨
+
+```
+export LANG=ko.KR_UTF-8    // 언어 설정 변경
+alias git="LANG=en_US.UTF-8 git"     // git 명렁 alias 추가
+```
