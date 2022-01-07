@@ -8,16 +8,18 @@ import com.sjhello.houseutils.constants.ActionType;
 import com.sjhello.houseutils.policy.BrokeragePolicy;
 import com.sjhello.houseutils.policy.BrokeragePolicyFactory;
 
+
+/**
+ * @author sjhello
+ *
+ * 중개 수수료가 얼마인지 조회하는 Controller
+ * */
 @RestController
 public class BrokerageQueryController {
 
-	/*
-	 * 타입 정의: 매매, 임대차
-	 * */
 	@GetMapping("/api/calc/brokerage")
 	public Long calcBrokerage(@RequestParam ActionType actionType, Long price) {
 
-		// TODO: 중개 수수료 계산하는 로직
 		BrokeragePolicy policy = BrokeragePolicyFactory.of(actionType);
 		return policy.calculate(price);
 	}
