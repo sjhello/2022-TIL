@@ -5,10 +5,44 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
 
+  <listener>
+    <listener-class>com.sjhello.listener.MyListener</listener-class>
+  </listener>
+
+  <filter>
+    <filter-name>sampleFilter</filter-name>
+    <filter-class>com.sjhello.filter.SampleFilter</filter-class>
+  </filter>
+
+  <filter>
+    <filter-name>myFilter</filter-name>
+    <filter-class>com.sjhello.filter.MyFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>myFilter</filter-name>
+    <servlet-name>hello</servlet-name>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>sampleFilter</filter-name>
+    <servlet-name>hello</servlet-name>
+  </filter-mapping>
+
   <servlet>
     <servlet-name>hello</servlet-name>
     <servlet-class>com.sjhello.servlet.HelloServlet</servlet-class>
   </servlet>
+
+  <servlet>
+    <servlet-name>sample</servlet-name>
+    <servlet-class>com.sjhello.servlet.SampleServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>sample</servlet-name>
+    <url-pattern>/sample</url-pattern>
+  </servlet-mapping>
   
   <servlet-mapping>
     <servlet-name>hello</servlet-name>
