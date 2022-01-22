@@ -40,3 +40,11 @@
 - destroy()
   - 서블릿 컨테이너의 재량에 따라 서블릿을 더 이상 메모리에 올려놓을 필요가 없다면 메모리에서 해제한다
     - ex> 서블릿 컨테이너 종료 시 등
+
+<br>
+
+---
+
+- maven의 scope, gradle의 configuration 정리
+  - classPath에 대한 정리
+  - [참고](https://olivejua-develop.tistory.com/59)
