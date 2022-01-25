@@ -10,14 +10,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98cad000-6da3-4e0b-b3c8-1c927e905e99" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/sjhello/servlet/HelloServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sjhello/servlet/HelloServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/sjhello/servlet/HelloServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/sjhello/servlet/HelloServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/legacy/WEB-INF/classes/com/sjhello/servlet/HelloServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/legacy/WEB-INF/classes/com/sjhello/servlet/HelloServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/legacy/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/legacy/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/sjhello/filter/MyFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/sjhello/filter/SampleFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/sjhello/listener/MyListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/sjhello/servlet/HelloServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/sjhello/servlet/SampleServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/legacy/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/legacy/WEB-INF/classes/com/sjhello/filter/MyFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/legacy/WEB-INF/classes/com/sjhello/filter/SampleFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/legacy/WEB-INF/classes/com/sjhello/listener/MyListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/legacy/WEB-INF/classes/com/sjhello/servlet/HelloServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/legacy/WEB-INF/classes/com/sjhello/servlet/SampleServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/legacy/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/legacy/index.jsp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,9 +72,9 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../Bside/project" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.17480469" />
+    <property name="project.structure.side.proportion" value="0.5178792" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
   </component>
   <component name="RunManager">
@@ -168,7 +177,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1642837944326</updated>
-      <workItem from="1642837947799" duration="5720000" />
+      <workItem from="1642837947799" duration="6340000" />
+      <workItem from="1643040431118" duration="4433000" />
+      <workItem from="1643112267499" duration="1052000" />
     </task>
     <servers />
   </component>
@@ -185,5 +196,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

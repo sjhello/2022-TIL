@@ -5,9 +5,15 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
 
-  <listener>
-    <listener-class>com.sjhello.listener.MyListener</listener-class>
-  </listener>
+  <context-param>
+    <param-name>contextClass</param-name>
+    <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+  </context-param>
+
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>com.sjhello.AppConfig</param-value>
+  </context-param>
 
   <filter>
     <filter-name>sampleFilter</filter-name>
@@ -20,14 +26,18 @@
   </filter>
 
   <filter-mapping>
-    <filter-name>myFilter</filter-name>
+    <filter-name>sampleFilter</filter-name>
     <servlet-name>hello</servlet-name>
   </filter-mapping>
 
   <filter-mapping>
-    <filter-name>sampleFilter</filter-name>
+    <filter-name>myFilter</filter-name>
     <servlet-name>hello</servlet-name>
   </filter-mapping>
+
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
 
   <servlet>
     <servlet-name>hello</servlet-name>
