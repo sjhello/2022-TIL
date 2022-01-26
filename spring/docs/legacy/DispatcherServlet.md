@@ -1,4 +1,4 @@
-# 디스패처 서블릿
+# Dispatcher Servlet
 
 ## Special Bean Types
 
