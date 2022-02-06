@@ -22,18 +22,4 @@ public class WebConfig {
 		viewResolver.setSuffix(".jsp");
 		return viewResolver;
 	}
-
-	// 기본전략을 사용하는 것과 같은 효과
-	@Bean
-	public HandlerAdapter handlerAdapter() {
-		RequestMappingHandlerAdapter handlerAdapter = new RequestMappingHandlerAdapter();
-		return handlerAdapter;
-	}
-
-	// 기본전략을 사용하는 것과 같은 효과
-	@Bean
-	public HandlerMapping handlerMapping() {
-		RequestMappingHandlerMapping handlerMapping = new RequestMappingHandlerMapping();
-		return handlerMapping;
-	}
 }
