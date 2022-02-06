@@ -2,19 +2,22 @@
 
 ## Special Bean Types
 
-[Special Bean Types - 참고 사이트](https://olivejua-develop.tistory.com/59)
+[Special Bean Types - 참고 사이트](https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-servlet-special-bean-types)
 
 <br>
 
 ![image](https://user-images.githubusercontent.com/23889744/151183516-ad705d86-34ca-401d-a56d-c8c744dde6e4.png)
+<br>
 _<DispatcherServlet에서 제공하는 특수한 Bean들 >_
+
+<br>
 
 - 디스패처 서블릿에서 제공하는 빈들을 **Special Bean Types** 이라고 한다
   - HandlerMapping
   - HandlerAdapter
   - HandlerExceptionResolver
   - ViewResolver
-  - LocaleResolver, LocalContextResolver
+  - LocaleResolver, LocaleContextResolver
   - ThemeResolver
   - MultipartResolver
   - FlashMapManager
@@ -32,12 +35,12 @@ _<DispatcherServlet에서 제공하는 특수한 Bean들 >_
 - MultipartResolver는 기본 전략에 등록되어 있지 않은 빈이다(스프링 부트는 기본 전략으로 사용되고 있다 StandardMultipartHttpServletRequest )
   - MultipartResolver를 사용하려면 설정이 필요하다
 
-### LocalResolver
+### LocaleResolver
 
 - 요청이 디스패처 서블릿으로 들어왔을때 들어온 요청을 분석하는 단계에서 사용이 된다
   - 요청을 보낸 클라이언트의 Locale 정보를 확인한다
     - 기본 전략에서 사용하는 구현체(AcceptHeaderLocaleResolver)는 request의 accept-language를 확인한다
-  - Locale 정보를 활용하여 Local에 맞는 적절한 messageSource를 제공 한다(Spring의 기능)
+  - Locale 정보를 활용하여 Locale에 맞는 적절한 messageSource를 제공 한다(Spring의 기능)
 
 ### ThemeResolver
 
@@ -81,3 +84,11 @@ _<DispatcherServlet에서 제공하는 특수한 Bean들 >_
     - 이렇게 Path에 데이터를 주거나, 쿼리 파라미터에 데이터를 주지 않아도 전송하게 해주는 것이 FlashMap 이다
     - FlashMap은 FlashMapManager가 관리한다
   - 결국 redirect를 할때 데이터 전송을 편하게 해주는 것이 FlashMapManager의 역할이다
+
+<br>
+
+---
+
+# 참고
+
+- [HTTP multipart/form-data 이해하기](https://olivejua-develop.tistory.com/59)
