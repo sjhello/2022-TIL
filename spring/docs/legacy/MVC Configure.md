@@ -1,4 +1,4 @@
-# MVC 설정
+# Spring MVC 설정
 
 ## @Bean 사용하여 직접 설정
 
@@ -135,3 +135,53 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 
 - @EnableWebMvc은 DelegatingWebMvcConfiguration을 사용하여 다른 클래스에서 설정을 읽어오는 방식으로 mvc 설정이 되어진다
   - WebMvcConfigurer는 WebMvcConfigurationSupport에서 설정해주는 HandlerMapping, HandlerAdapter 에다가 추가해주는 interceptor나 messageConverter 뿐만아니라 새로운 interceptor나 messageConverter 등을 쉽게 설정 할 수 있게 도와준다
+
+<br>
+
+# spring boot에서의 MVC 설정
+
+![image](https://user-images.githubusercontent.com/23889744/153240864-b680e11d-f9e5-4a01-adc7-fd73e0f26008.png)
+
+- spring-boot-autoconfigurer 모듈의 META-INF/spring.factories가 있는데 이 파일은 boot가 자동으로 설정해주는(AutoConfiguration) 설정정보들을 기술해놓았다
+  - DispatcherServlet 설정은 org.springframework.boot.autoconfigure.web.servlet.DispatcherServletAutoConfiguration에서 확인 가능하다
+
+## spring boot DispatcherServlet에서 설정하는 HandlerMapping, HandlerAdapter, ViewResolver
+
+![image](https://user-images.githubusercontent.com/23889744/153235950-e3fac378-35ba-4a80-a686-24ca70f94922.png)
+
+<br>
+
+- boot를 쓰지않은 Spring MVC에서의 HandlerMapping, HandlerAdapter에서 2가지 전략을 추가하였다
+  - RouterFunctionMapping
+  - SimpleUrlHandlerMapping
+- 우선적으로 RequestMapping 관련 HandlerMapping과 HandlerAdapter를 사용한다
+
+![image](https://user-images.githubusercontent.com/23889744/153238985-e7373ec7-86ed-4310-8fe5-ef7ac99346d8.png)
+
+- viewResolver에서는 ContentNegotiatingViewResolver을 주로 사용할텐데 이것은 요청정보에서 해당 요청이 어떠한 정보를 원하는 것인지 분석을 하여 다른 viewResolver들에게 위임한다
+  - BeanNameViewResolver
+  - ThymleafViewResolver
+  - ViewResolverComposite
+  - InternalResourceViewResolver
+- 사진에도 나와있듯이 ContentNegotiatingViewResolver 클래스에서 나머지 ViewResolver들을 참조하고 있다
+
+## application.properties로 설정
+
+## @Configuration + Implements WebMvcConfigurer 설정
+
+## @Configuration + @EnableWebMvc + Implements WebMvcConfigurer 설정
+
+## boot는 어떻게 이러한 설정들을 자동으로 설정해주는걸까?
+
+![image](https://user-images.githubusercontent.com/23889744/153241229-3356fc43-bcda-4af6-962f-c7c0214d1dc8.png)
+
+- @SpringBootApplication
+  - @EnableAutoConfiguration
+- @ConditionalOnXXX
+  - 어떠한 조건에 Ture일때 해당 클래스를 빈으로 사용하겠다는 의미
+    - @ConditionalOnWebApplication(type = Type.Servlet)
+      - springboot WebApplication의 타입은 3가지: SERVLET, REACTIVE, NONE(spring-boot 모듈의 WebApplicationType에서 확인 가능하다)
+    - @ConditionalOnClass(DispatcherServlet.class)
+      - 인자값으로 들어온 클래스가 클래스패스에 있는 경우
+  - DispatcherServletAutoConfiguration의 @ConditionalOnXXX 어노테이션을 살펴보자
+    - bootApplication이 Servlet이고, 클래스패스에 DispatcherSerlvet.class(이것을 상속한 클래스가 있을때에도)가 있을때 DispatcherServletAutoConfiguration 설정을 사용하겠다는 말이다
