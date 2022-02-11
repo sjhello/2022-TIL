@@ -167,16 +167,32 @@ public class WebMvcConfigurationSupport implements ApplicationContextAware, Serv
 
 ## application.properties로 설정
 
+![image](https://user-images.githubusercontent.com/23889744/153604305-3dc90273-ad1c-4571-ab6a-0ff8a0c217d6.png)
+_<WebMvcProperties.Resources>_
+<br>
+
+- spring-boot-autoconfigurer 모듈의 META-INF/spring.factories의 WebMvcAutoConfiguration 안에 static하게 존재하는 WebMvcAutoConfigurationAdapter 클래스에 의해 application.properties 파일에서 mvc 관련 설정을 정의 할 수 있다
+  ![image](https://user-images.githubusercontent.com/23889744/153606210-f6e29c39-d229-4682-a99d-4cfca4d3d17e.png)
+- WebMvcAutoConfigurationAdapter의 생성자는 WebMvcProperties, WebProperties를 초기화하는데 이 클래스들은 각각 spring.mvc, spring.web 을 prefix로 갖는 properties들을 사용하여 mvc 설정을 하게된다
+
 ## @Configuration + Implements WebMvcConfigurer 설정
 
+- boot가 해주는 자동설정에 이어서 사용자가 설정하는 값이 추가되어지는 형태
+
 ## @Configuration + @EnableWebMvc + Implements WebMvcConfigurer 설정
+
+- boot가 해주는 자동설정을 사용하지 않고 mvc를 설정을 WebMvcConfigurer 제공해주는 메서드를 이용하여 설정하는 형태
+- @EnableWebMvc에는 DelegatingWebMvcConfiguration을 Import 하는데 이 클래스는 WebMvcConfigurationSupport를 상속하고 있다
+- boot 자동 설정인 WebMvcAutoConfiguration을 사용하기위해선 WebMvcConfigurationSupport 가 빈으로 존재하지 않아야 하기 때문에 자동설정이 적용되지 않는 것이다
+
+<br>
 
 ## boot는 어떻게 이러한 설정들을 자동으로 설정해주는걸까?
 
 ![image](https://user-images.githubusercontent.com/23889744/153241229-3356fc43-bcda-4af6-962f-c7c0214d1dc8.png)
 
 - @SpringBootApplication
-  - @EnableAutoConfiguration
+  - **@EnableAutoConfiguration**
 - @ConditionalOnXXX
   - 어떠한 조건에 Ture일때 해당 클래스를 빈으로 사용하겠다는 의미
     - @ConditionalOnWebApplication(type = Type.Servlet)
