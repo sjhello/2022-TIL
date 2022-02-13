@@ -128,4 +128,63 @@ boot의 자동설정중 WebMvcAutoConfiguration 클래스의 addFormatter 부분
 	}
 ```
 
+```java
+@Component
+public class PersonFormatter implements Formatter<Person> {
+
+	@Override
+	public Person parse(String text, Locale locale) throws ParseException {
+		Person person = new Person();
+		person.setName(text);
+		return person;
+	}
+
+	@Override
+	public String print(Person person, Locale locale) {
+		return person.toString();
+	}
+}
+
+```
+
 ApplicationConversionService.addBeans 메서드에 의해 GenericConverter,Converter,Printer,Parser 타입의 빈을 수집하여 컨버터, 포매터, 프린터, 파서를 FormatterRegistry의 addXX 메서드를 이용하여 설정을 등록해준다
+
+```java
+// import 생략
+@WebMvcTest
+class SampleControllerTest {
+
+	@Autowired
+	MockMvc mockMvc;
+
+	@Test
+	void hello() throws Exception {
+		this.mockMvc.perform(get("/hello/sjhello"))
+			.andDo(print())
+			.andExpect(content().string("hello sjhello"));
+	}
+
+	@Test
+	void hellorRequestParam() throws Exception {
+		this.mockMvc.perform(get("/hello?name=sjhello"))
+			.andDo(print())
+			.andExpect(content().string("hello sjhello"));
+	}
+}
+```
+
+헌데 이렇게 포매터를 @Component를 이용하여 빈으로 등록하면 테스트 코드가 실패하게 된다 그 이유는 @WebMvcTest와 관련이 있는데
+![image](https://user-images.githubusercontent.com/23889744/153751269-cb1ce590-059f-408a-9e5d-f0538e80f9fd.png)
+
+@WebMvcTest의 주석을 보면 @WebMvcTest는 @Component, @Service, @Repository 빈은 가져오지 않는다 때문에 @Component로 등록한 PersonFormatter는 @WebMvcTest는 PersonFormatter를 인식하지 못하는 것이다
+
+```java
+@SpringBootTest
+@AutoConfigureMockMvc
+class SampleControllerTest {
+  ...
+}
+```
+
+그래서 @Component들을 테스트 코드에서 사용하기 위해서 @SpringBootTest
+@AutoConfigureMockMvc 설정해준다 @AutoConfigureMockMvc를 사용하는 목적은 MockMvc를 주입받기 위해서이다
