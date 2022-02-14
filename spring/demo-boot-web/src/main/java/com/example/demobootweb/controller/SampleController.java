@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demobootweb.domain.Person;
+import com.example.demobootweb.domain.Product;
 
 @RestController
 public class SampleController {
@@ -18,5 +19,10 @@ public class SampleController {
 	@GetMapping("/hello")
 	public String helloRequestParam(@RequestParam("name") Person person) {
 		return "hello " + person.getName();
+	}
+
+	@GetMapping("/helloId")
+	public String helloRequestParamId(@RequestParam("id") Product product) {
+		return "hello " + product.getName();
 	}
 }
