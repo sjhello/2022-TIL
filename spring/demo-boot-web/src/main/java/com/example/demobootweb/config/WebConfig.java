@@ -2,14 +2,25 @@ package com.example.demobootweb.config;
 
 import java.util.concurrent.TimeUnit;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.CacheControl;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.example.demobootweb.domain.Entity;
+
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+
+	@Bean
+	public Jaxb2Marshaller jaxb2Marshaller() {
+		Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
+		jaxb2Marshaller.setPackagesToScan(Entity.class.getPackageName());
+		return jaxb2Marshaller;
+	}
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
