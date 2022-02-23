@@ -4,6 +4,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -18,9 +21,19 @@ class ContentTypeControllerTest {
 	@Autowired
 	MockMvc mockMvc;
 
+	@Autowired
+	ObjectMapper objectMapper;
+
 	@Test
 	void jsonHello() throws Exception {
+		Map<String, String> map = new HashMap<>();
+		map.put("key", "value");
+		map.put("name", "sjhello");
+
+		String jsonString = objectMapper.writeValueAsString(map);
+
 		this.mockMvc.perform(get("/jsonHello")
+				.content(jsonString)
 				.contentType(MediaType.APPLICATION_JSON_VALUE))
 			.andDo(print())
 			.andExpect(status().isOk());
