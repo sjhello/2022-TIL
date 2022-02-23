@@ -59,6 +59,16 @@
 - URI에 해당하는 리소스를 삭제한다
 - 멱등성을 보장한다
 
+## HEAD
+
+- HEAD 요청은 GET 요청과 비슷한데 다른점은 서버에서 HEAD 요청에 대한 응답을 보내줄때 body 부분은 빼고 보내는게 GET과 다르다
+
+## OPTIONS
+
+- 요청하는 URI에서 사용 가능한 HTTP METHOD 정보를 응답 헤더에 실어 보낸다
+  - HEADERS의 Allow라는 값안에 사용가능한 HTTP METHOD 정보가 있다
+- HEAD와 마찬가지로 서버에서 body 부분은 빼고 응답을 보냄
+
 <br>
 
 ---
@@ -87,3 +97,5 @@
 - [HTTP 요청 메서드](https://developer.mozilla.org/ko/docs/Web/HTTP/Methods)
 - [RESTful web API 디자인](https://docs.microsoft.com/ko-kr/azure/architecture/best-practices/api-design#conform-to-http-semantics)
 - [인텔리제이에서 원하는 메서드가 alt + enter로 나오지 않을때](https://junho85.pe.kr/1598)
+- [HTTP 1.1 Method Definitions](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html)
+- [OPTIONS 테스트 할때 순서에 상관없이 http 메서드를 확인하는 코드](https://github.com/spring-projects/spring-framework/blob/main/spring-test/src/test/java/org/springframework/test/web/servlet/samples/standalone/resultmatchers/HeaderAssertionTests.java)
