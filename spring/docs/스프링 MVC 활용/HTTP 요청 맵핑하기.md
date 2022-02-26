@@ -87,6 +87,45 @@
 
 <br>
 
+# 커스텀 애노테이션
+
+## 어노테이션에 대한 간단한 설명
+
+- composed 어노테이션: 다른 애노테이션들과의 조합으로 만들어진 어노테이션
+  - @GetMapping은 @RequestMapping을 사용하고 있다
+- 메타 어노테이션: 어노테이션에 대한 어노테이션
+  - @Retention
+    - 어노테이션을 만들때 그 어노테이션을 언제까지 유지 할 것인지를 명시하는 @Rention 어노테이션을 반드시 써줘야 한다
+    - @Retention의 RetentionPolicy 값에 따라서 해당 어노테이션이 Source 에서만 유지될지, Class 레벨 까지 유지될지, Runtime시에도 어노테이션 정보가 유지될지가 결정된다
+    - RetentionPolicy.SOURCE
+      - 작성한 소스코드 까지에서만 어노테이션 정보를 유지(.class 파일에선 어노테이션이 사라진다)
+      - 어노테이션이 주석의 역할을 하는 경우
+    - RetentionPolicy.CLASS
+      - @Retention을 사용할때 지정되는 기본값이다
+      - .class 까지만 어노테이션 정보를 유지하겠다(런타임 시에는 어노테이션 정보를 모름)
+    - RetentionPolicy.RUNTIME
+      - 런타임시에도 어노테이션 정보를 유지하겠다는 의미이다
+      - 스프링 MVC에서 사용하는 대부분의 어노테이션이 이 값을 사용하고 있다
+        - @Controller, @Service, @Repositry, @RequestMapping ....
+      - 디스패처 서블릿의 경우 들어온 요청에 대해서 어떤 핸들러로 처리를 해야될지 찾아야 하고(HandlerMapping), 처리할 핸들러를 찾았으면 그 핸들러를 실행(HandlerAdapter)까지 해야하기 때문에 런타임시에 어노테이션에 대한 정보를 알고 있어야 한다
+  - @Target
+    - @Target은 해당 어노테이션을 어디에서 사용 할 수 있는지에 대한 정보
+      - **ElementType.TYPE**
+        - class, interface(include annotation), enum
+      - ElementType.FIELD
+      - **ElementType.METHOD**
+      - ElementType.PARAMETER
+      - ElementType.CONSTRUCTOR
+      - ElementType.LOCAL_VARIABLE
+      - ElementType.ANNOTATION_TYPE
+      - ElementType.PACKAGE
+      - ElementType.TYPE_PARAMETER
+      - ElementType.TYPE_USE
+      - ElementType.MODULE
+  - @Documented
+    - javadoc을 만들때 해당 어노테이션을 대한 정보를 문서에 남기게 해주는 어노테이션
+      - [@GetMapping에 대한 문서](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/GetMapping.html) 를 보면 @AliasFor를 확인 할 수 있는데 @AliasFor 에도 @Documented가 있기 때문에 @RequestMapping 문서에서 @AliasFor가 확인이 되는 것이다
+
 ---
 
 # 참고
