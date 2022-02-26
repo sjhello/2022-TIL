@@ -1,4 +1,4 @@
-package com.example.demowebmvc.controller;
+package com.example.demowebmvc.controller.requestMapping;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
