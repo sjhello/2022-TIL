@@ -1,9 +1,11 @@
 package io.security.corespringsecurity.security.configs;
 
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -19,9 +21,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		String password = passwordEncoder().encode(plainText);
 
-		auth.inMemoryAuthentication().withUser("admin").password(password).roles("ADMIN");
-		auth.inMemoryAuthentication().withUser("manager").password(password).roles("MANAGER");
 		auth.inMemoryAuthentication().withUser("user").password(password).roles("USER");
+		auth.inMemoryAuthentication().withUser("manager").password(password).roles("MANAGER", "USER");
+		auth.inMemoryAuthentication().withUser("admin").password(password).roles("ADMIN","USER","MANAGER");
 	}
 
 	@Bean
@@ -33,13 +35,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 			.antMatchers("/").permitAll()
-			.antMatchers("/messages").hasRole("MANAGER")
-			.antMatchers("/mypage").hasRole("USER")
-			.antMatchers("/config").hasRole("ADMIN")
+			.antMatchers("/mypage").hasAnyRole("USER", "MANAGER", "ADMIN")
+			.antMatchers("/messages").hasAnyRole("MANAGER", "ADMIN")
+			.antMatchers("/config").hasAnyRole("ADMIN")
 			.anyRequest().authenticated()
 		.and()
 			.formLogin();
 	}
-
-
 }
