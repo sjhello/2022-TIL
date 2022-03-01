@@ -42,4 +42,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.and()
 			.formLogin();
 	}
+
+	/*
+	* permitAll()은 보안 필터를 거친 후에 해당 요청에 대해서 승인을 한 것
+	* ignoring()은 보안 필터를 거치지 않음
+	* */
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
+	}
 }
