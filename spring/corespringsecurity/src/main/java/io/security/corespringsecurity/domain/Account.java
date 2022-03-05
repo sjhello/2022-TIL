@@ -13,7 +13,7 @@ public class Account {
 	@Id
 	@GeneratedValue
 	private Long id;
-	private String name;
+	private String userName;
 	private String password;
 	private String age;
 	private String email;

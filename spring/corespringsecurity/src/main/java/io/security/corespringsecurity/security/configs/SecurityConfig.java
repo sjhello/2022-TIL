@@ -8,22 +8,22 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import lombok.RequiredArgsConstructor;
+
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	private String plainText = "1234";
+	private final UserDetailsService userDetailsService;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		String password = passwordEncoder().encode(plainText);
-
-		auth.inMemoryAuthentication().withUser("user").password(password).roles("USER");
-		auth.inMemoryAuthentication().withUser("manager").password(password).roles("MANAGER", "USER");
-		auth.inMemoryAuthentication().withUser("admin").password(password).roles("ADMIN","USER","MANAGER");
+		auth.userDetailsService(userDetailsService);
 	}
 
 	@Bean
